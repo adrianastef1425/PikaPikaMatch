@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 import { Card } from '../ui/Card';
-import { cardTransition } from '../../utils/animations';
 import type { Character } from '../../types';
 
 interface CharacterCardProps {
@@ -29,6 +28,8 @@ export const CharacterCard = memo(function CharacterCard({
   animationType = null,
   transitionDirection = null,
 }: CharacterCardProps) {
+  console.log('CharacterCard rendering:', character.name, 'transitionDirection:', transitionDirection);
+  
   const sourceColors = {
     pokemon: 'bg-pastel-yellow text-yellow-900',
     rickandmorty: 'bg-pastel-green text-green-900',
@@ -65,12 +66,19 @@ export const CharacterCard = memo(function CharacterCard({
           key={character.id}
           className="relative w-full"
           style={{ aspectRatio: '4/5' }}
-          variants={transitionDirection ? cardTransition(transitionDirection) : undefined}
-          initial={transitionDirection ? 'enter' : undefined}
-          animate={transitionDirection ? 'enter' : undefined}
-          exit={transitionDirection ? 'exit' : undefined}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={
+            transitionDirection
+              ? {
+                  x: transitionDirection === 'left' ? -300 : 300,
+                  opacity: 0,
+                  rotate: transitionDirection === 'left' ? -10 : 10,
+                }
+              : { opacity: 0, scale: 0.9 }
+          }
+          transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
           // Touch gesture support
           drag={!isAnimating ? 'x' : false}
           dragConstraints={{ left: 0, right: 0 }}

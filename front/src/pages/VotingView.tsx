@@ -36,18 +36,18 @@ export function VotingView() {
     const success = await handleLike();
 
     if (success) {
-      // Wait for animation to complete before transitioning
+      // Wait for like animation to complete
       setTimeout(() => {
-        setTransitionDirection('right');
-        setIsAnimating(false);
-        setAnimationType(null);
         setShowSparkles(false);
+        setTransitionDirection('right');
         
-        // Fetch next character after card transition
-        setTimeout(() => {
+        // Wait for card exit animation, then fetch next character
+        setTimeout(async () => {
+          await fetchRandomCharacter();
           setTransitionDirection(null);
-          fetchRandomCharacter();
-        }, 300);
+          setIsAnimating(false);
+          setAnimationType(null);
+        }, 400); // Wait for exit animation (300ms) + buffer
       }, 1000);
     } else {
       // Reset animation state if vote failed
@@ -67,17 +67,17 @@ export function VotingView() {
     const success = await handleDislike();
 
     if (success) {
-      // Wait for animation to complete before transitioning
+      // Wait for dislike animation to complete
       setTimeout(() => {
         setTransitionDirection('left');
-        setIsAnimating(false);
-        setAnimationType(null);
         
-        // Fetch next character after card transition
-        setTimeout(() => {
+        // Wait for card exit animation, then fetch next character
+        setTimeout(async () => {
+          await fetchRandomCharacter();
           setTransitionDirection(null);
-          fetchRandomCharacter();
-        }, 300);
+          setIsAnimating(false);
+          setAnimationType(null);
+        }, 400); // Wait for exit animation (300ms) + buffer
       }, 800);
     } else {
       // Reset animation state if vote failed
@@ -174,14 +174,17 @@ export function VotingView() {
 
             {/* Character Card */}
             <div className="mb-4 sm:mb-6 md:mb-0">
-              <CharacterCard
-                character={currentCharacter}
-                isAnimating={isAnimating}
-                animationType={animationType}
-                transitionDirection={transitionDirection}
-                onLike={handleLikeClick}
-                onDislike={handleDislikeClick}
-              />
+              {currentCharacter && (
+                <CharacterCard
+                  key={currentCharacter.id}
+                  character={currentCharacter}
+                  isAnimating={isAnimating}
+                  animationType={animationType}
+                  transitionDirection={transitionDirection}
+                  onLike={handleLikeClick}
+                  onDislike={handleDislikeClick}
+                />
+              )}
             </div>
 
             {/* Desktop: Right like button */}
