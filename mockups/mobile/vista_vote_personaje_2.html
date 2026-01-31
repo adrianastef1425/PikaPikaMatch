@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PikaPikaMatch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#34D399", // Vibrant Mint (Emerald 400)
+                        "secondary": "#A78BFA", // Lavender (Violet 400)
+                        "accent": "#C4B5FD", // Light Lavender
+                        "background-light": "#F0FDF4", // Very light mint/white
+                        "background-dark": "#111827",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1f2937",
+                        "pastel-red": "#FDA4AF", // Soft Pastel Red
+                        "pastel-green": "#6EE7B7", // Mint Green
+                        "pastel-lavender": "#E9D5FF", // Soft Lavender
+                        "pastel-mint": "#D1FAE5", // Soft Mint
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(52, 211, 153, 0.2)', // Mint shadow
+                        'card': '0 20px 50px -12px rgba(52, 211, 153, 0.25)', // Mint card shadow
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden selection:bg-primary/30">
+<header class="flex items-center justify-between px-6 pt-12 pb-4 w-full z-10">
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-card-dark shadow-sm text-slate-400 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">PikaPika<span class="text-primary">Match</span></h1>
+<p class="text-xs font-bold text-secondary uppercase tracking-widest mt-0.5">Dimension C-137</p>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-card-dark shadow-sm text-slate-400 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">style</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center relative w-full max-w-md mx-auto px-4 pb-4">
+<div class="absolute top-2 w-full flex justify-center z-0">
+<div class="bg-white/60 dark:bg-card-dark/50 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/40 dark:border-white/10 shadow-sm">
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                    99 / 100 Voted
+                </p>
+</div>
+</div>
+<div class="relative w-full aspect-[4/5] max-h-[60vh] mt-6 group">
+<div class="absolute inset-0 top-4 scale-[0.95] translate-y-4 rounded-[2.5rem] bg-pastel-mint dark:bg-card-dark/40 border border-emerald-100 dark:border-slate-800 shadow-sm z-0 transition-transform duration-500"></div>
+<div class="absolute inset-0 top-2 scale-[0.98] translate-y-2 rounded-[2.5rem] bg-pastel-lavender dark:bg-card-dark/70 border border-purple-100 dark:border-slate-800 shadow-md z-10 transition-transform duration-500"></div>
+<div class="relative w-full h-full rounded-[2.5rem] bg-card-light dark:bg-card-dark shadow-card overflow-hidden z-20 flex flex-col border border-slate-50 dark:border-slate-800/50">
+<div class="relative w-full h-[75%] bg-gradient-to-br from-emerald-50 to-purple-50 dark:from-slate-800 dark:to-slate-900">
+<div class="absolute inset-0 bg-contain bg-bottom bg-no-repeat transition-transform duration-500 hover:scale-105" data-alt="Rick Sanchez illustration" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrJn7NHBVqwYsO9bZqZ8ZZ2CknGGhgjYXe2Ub7LBs30ihgDy4QUH4rYd8ftjLdsnBhsRi6KNUl_nD4Viy57M78Yt50xZqbe-GE2cZy_yYBhrUpEKYg9cI31TH5Uz0uGntrqnqWRvlpeBlw25vViJdxkHJmgoEU2jsHjyHbvOwTr-qIKsYUUfIQ-kEkUpSXPZICPvMEbvm9enOEsWYmThjIWxlI4jQZZnzcmB6YJae9_hiXqLYNNs3GIesGbuPpgoFtkUfyowLkOc2L');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 dark:to-black/30"></div>
+<div class="absolute top-4 right-4 size-10 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 text-slate-800 dark:text-white shadow-sm">
+<span class="material-symbols-outlined text-xl text-primary font-bold">science</span>
+</div>
+</div>
+<div class="flex-1 px-6 py-4 flex flex-col justify-center bg-card-light dark:bg-card-dark relative">
+<div class="flex items-end justify-between w-full">
+<div>
+<h2 class="text-3xl font-extrabold text-slate-800 dark:text-white leading-tight">Rick Sanchez</h2>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide">Genius</span>
+<span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-xs font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wide">RickAndMorty</span>
+</div>
+</div>
+<button class="size-9 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">info</span>
+</button>
+</div>
+<p class="mt-3 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        Wubba Lubba Dub Dub! The smartest man in the universe. Cynical, alcoholic, and brilliant.
+                    </p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-center gap-12 mt-auto pb-4 pt-8 w-full max-w-[280px]">
+<button class="group flex items-center justify-center size-16 rounded-full bg-pastel-red shadow-soft hover:shadow-lg border-4 border-white dark:border-card-dark transition-all active:scale-95">
+<span class="material-symbols-outlined text-3xl text-white group-hover:scale-110 transition-transform">close</span>
+</button>
+<button class="group flex items-center justify-center size-16 rounded-full bg-pastel-green shadow-soft hover:shadow-lg border-4 border-white dark:border-card-dark transition-all active:scale-95">
+<span class="material-symbols-outlined text-4xl text-white fill-current group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+</main>
+<nav class="w-full bg-white dark:bg-card-dark border-t border-slate-100 dark:border-slate-800 pb-safe pt-2 px-6">
+<div class="flex items-center justify-center gap-16 max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center w-20 h-14 gap-1 text-primary group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">capture</span>
+<span class="absolute -top-1 -right-1 size-2 bg-pastel-red rounded-full border-2 border-white dark:border-card-dark"></span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider">Vote</span>
+</a>
+<a class="flex flex-col items-center justify-center w-20 h-14 gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform">grid_view</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Dex</span>
+</a>
+</div>
+<div class="h-5 w-full"></div>
+</nav>
+<script>
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-90');
+                setTimeout(() => {
+                    this.classList.remove('scale-90');
+                }, 150);
+            });
+        });
+    </script>
+
+</body></html>

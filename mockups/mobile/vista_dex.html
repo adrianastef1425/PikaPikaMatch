@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PikaPikaMatch - Stats</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FCD34D", // Vibrant Pastel Yellow
+                        "secondary": "#F9A8D4", // Pink
+                        "accent": "#6EE7B7", // Mint
+                        "background-light": "#FFFBEB", // Very light warm yellow/cream
+                        "background-dark": "#292524",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1c1917",
+                        "pastel-red": "#FCA5A5", 
+                        "pastel-green": "#86EFAC", 
+                        "pastel-pink": "#FBCFE8",
+                        "pastel-yellow": "#FEF08A",
+                        "pastel-orange": "#FDBA74",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 8px 30px -10px rgba(0, 0, 0, 0.05)',
+                        'card': '0 12px 24px -8px rgba(0, 0, 0, 0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col overflow-hidden">
+<header class="flex items-center justify-between px-6 pt-12 pb-4 w-full shrink-0">
+<div class="flex flex-col">
+<h1 class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">PikaPika<span class="text-primary">Match</span></h1>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Global Standings</p>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-card-dark shadow-sm text-slate-400 dark:text-slate-300">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto no-scrollbar pb-8">
+<section class="mt-4">
+<div class="px-6 flex items-center justify-between mb-3">
+<h2 class="text-lg font-extrabold text-slate-800 dark:text-white">Community Favorites</h2>
+<span class="text-xs font-bold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                    MOST LIKED
+                </span>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-6 snap-x">
+<div class="flex-none w-36 snap-start">
+<div class="bg-white dark:bg-card-dark rounded-3xl p-3 shadow-soft border border-yellow-50 dark:border-slate-800/50 relative">
+<div class="absolute top-2 right-2 size-6 bg-pastel-green rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="aspect-square bg-yellow-50 dark:bg-slate-800 rounded-2xl mb-3 overflow-hidden">
+<img alt="Pikachu" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXX3EmK4ejrWmoE_7dnrxbBiGtd8te54qoJI2wuPJEcbd0x55dGJZ2kXj-dDgSlk51qm50IOTFWwkeuuxFAhktDEB51wTqu7uZdCu3w-7dD918_rURXB_5nxC6zi0GGAXfMTr6JBabiEDbNb7t0aUl7qD668RVNxUjK-yji0XGFuraC4MdMA0kXuGYn8N2ScfcGpfXnAqJf3E_2QqaPqI6Cf3cy1BCPZq3FOOk45qaL0k1tOLrGl8I14S4MslI4Ee3vZPVggrZfQ7O"/>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-white truncate">Pikachu</p>
+<p class="text-[10px] font-bold text-slate-400">98% Likes</p>
+</div>
+</div>
+<div class="flex-none w-36 snap-start">
+<div class="bg-white dark:bg-card-dark rounded-3xl p-3 shadow-soft border border-yellow-50 dark:border-slate-800/50 relative">
+<div class="absolute top-2 right-2 size-6 bg-pastel-green rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="aspect-square bg-pink-50 dark:bg-slate-800 rounded-2xl mb-3 overflow-hidden">
+<img alt="Jigglypuff" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxdCC9KSn1kIf_4jzDfnJyJqrxn_m-rMgmMtqH5HaMFqlCsvXdirayJpvq35vYwAyjKtz7-DIuv-OZM9gx3Fa7BBtrBzf5CrwIF0U4Na89IFkwtiqK1ae8mSEQk4FkxjnabtX8JknlvMV7UVhTpNlNWqRQwnBUscATXj9_eJ0HNvK_KxRsB7BAGdd7G4phYbfZOsyHHuW3OKYnjh7mi1_vCp35SWMnyjr3dA9IFXpG0Hgzp025vJt6qsloRJ17rN7mplnMkWm8BIHX"/>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-white truncate">Jigglypuff</p>
+<p class="text-[10px] font-bold text-slate-400">94% Likes</p>
+</div>
+</div>
+<div class="flex-none w-36 snap-start">
+<div class="bg-white dark:bg-card-dark rounded-3xl p-3 shadow-soft border border-yellow-50 dark:border-slate-800/50 relative">
+<div class="absolute top-2 right-2 size-6 bg-pastel-green rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="aspect-square bg-orange-50 dark:bg-slate-800 rounded-2xl mb-3 overflow-hidden">
+<img alt="Charmander" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0Fg8YKdfJuZRxPWEFzlCpBAc6qNmk0WpO3C0hZKssMgre0cbzUNnTWZIR_k7YVbb-Rs1BzLnHtjC1tHYq3D_Qh6kHRoScuMmjCMwdGq0VsMawCxPeizEEkftEElFFnglIhZXlLPncWuwShEJyXp5TmrF-8GypCRKD7GfZeJUvXqPYeLCMOycpqscuaUK8x6zOT8Rfru6ctQ9fHjh4fpynS3dkJ1Vz_RQJ-qCokxk---36X9qzfclERYGibvbBCPd5QKxR4pFDTmcS"/>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-white truncate">Charmander</p>
+<p class="text-[10px] font-bold text-slate-400">91% Likes</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<div class="px-6 flex items-center justify-between mb-3">
+<h2 class="text-lg font-extrabold text-slate-800 dark:text-white">Most Controversial</h2>
+<span class="text-xs font-bold text-pastel-red flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">close</span>
+                    MOST DISLIKED
+                </span>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-6 snap-x">
+<div class="flex-none w-36 snap-start">
+<div class="bg-white dark:bg-card-dark rounded-3xl p-3 shadow-soft border border-yellow-50 dark:border-slate-800/50 relative">
+<div class="absolute top-2 right-2 size-6 bg-pastel-red rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</div>
+<div class="aspect-square bg-purple-50 dark:bg-slate-800 rounded-2xl mb-3 overflow-hidden">
+<img alt="Koffing" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpHLQT1hWBr1As0O9pZBAiR_KxkEaTJQoOUGbnHoJDC786ZOkW1Y9yEJf33vVjgEC48_0qV0DrDdMWXSIAPx1zjIwWTeK9L6c0c3NEquzTXACvHjJbtjlRiNAvhCyJcqAX4PvkXn610CTwJZOwyiwX2Qe2iH2o6pHmvQ59-9glGAnEnz_ONun5zkDEU_Zrie4jNZLOyzFK2A38BSGltqjxXg4rKwelx74S8itF44w3Ovq8OveWCMgzYPNLbMEqNT6k5txCNixGFIDk"/>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-white truncate">Koffing</p>
+<p class="text-[10px] font-bold text-slate-400">65% Dislikes</p>
+</div>
+</div>
+<div class="flex-none w-36 snap-start">
+<div class="bg-white dark:bg-card-dark rounded-3xl p-3 shadow-soft border border-yellow-50 dark:border-slate-800/50 relative">
+<div class="absolute top-2 right-2 size-6 bg-pastel-red rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</div>
+<div class="aspect-square bg-blue-50 dark:bg-slate-800 rounded-2xl mb-3 overflow-hidden">
+<img alt="Tentacool" class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZnnyBVaEOwsGJzNnErlU4ip_uNEO3HzMbT2tPjyIGA44BfVQaiAz80HXVWpHTaxDc9spl5xm6Uz9GPrjV3YBHSgxteUOzC2szLT4WjeXmFfNbzGmHAuzRCbCZgo2qpx0RDd4VSNfUhMhbk50Q8nB2pVFD835leWp2vgXakitjHZDIB4MAwbLqcRwumgdoIHrN8maYHDw_13Lvc9Fs1oYx7crUs8ERAaTRpsejrtFDF5yf6ZwHsk-AaokO9kdD1T25QaKfwg6mnuOQ"/>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-white truncate">Tentacool</p>
+<p class="text-[10px] font-bold text-slate-400">58% Dislikes</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8 px-6">
+<h2 class="text-lg font-extrabold text-slate-800 dark:text-white mb-3">Recently Evaluated</h2>
+<div class="space-y-3">
+<div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-soft border border-yellow-50 dark:border-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center">
+<img alt="Pikachu" class="size-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSF9Y7DUL9nMotyRbpJFUiFNnWsxZDafd2Ug26JE136zjaQgBQ26EN6i1jCC0bV_r8HS9V4Cf3Jgcv1lErQKmLV5kGKtgp7Q0yfEU1bKpHP0txNtAoEU5tnSqfe-5ZZ8JZYrQ64HQdU2WEi2BbP-xgFxMHEKGFTGiHGmcTHsCh9VNj0APBpXJ18neftAgqB-N30XCmxIscK17TyXTpXUtmr4LogUWNKtEQuMYq1XgHaVfoRpIZuQ0ZFEkWFf397Shhl4vyz_agq1Uq"/>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-white">Pikachu</p>
+<p class="text-[11px] font-medium text-slate-400">Electric Type</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pastel-green/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Liked</span>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-soft border border-yellow-50 dark:border-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center overflow-hidden">
+<img alt="Zubat" class="size-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeaqHfpl3rTSsNv0VOIFy1sBBKcHG_NANWisws_35Z2y70J1IlJbTcWlaCFjKLgdKhgaEIPycn7yoU_5OLe54ghgEooR-Y_ajLuuIJJnkTKutK2Z0pO2iYdScxSZ_nep-TOqF0Y5OjnFxkvRKZjmdKzUrJUAq8C3MIxFbYD0QHhqst1eSSJ4-c7yHgSvYubu8hSzPDbNfahBWXCB9RkyaNEG_12yzgnRjKwcsmtugSzWFlK82LgqJYGXZ_SIWSaQ9mU5Hsq9p3Bv_-"/>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-white">Zubat</p>
+<p class="text-[11px] font-medium text-slate-400">Poison/Flying Type</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pastel-red/20 text-red-500">
+<span class="material-symbols-outlined text-sm">close</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Disliked</span>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-soft border border-yellow-50 dark:border-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center overflow-hidden">
+<img alt="Bulbasaur" class="size-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALWCQvcGwrwX8WUWrz60lBh6cYg_HcPtDkBzIkucr3f6CqIR8DoimIw_E_LJ5HFDJaQJxayUfnjS9OxjCiToE8P_QQxjGb7W96-eZC3icQDEPjrohfY8pNrrIqrtkJjvYMGAg5BDvtJGGKJadR9mby8XVBREaG8HbwnOsINTk7mlVd71AphWEROMXAyyYm4qIxmsMtmzB_Us3jCcug1Hv6-Lnfha7Zvd-VuFD2B62WA5S1C1Mnsyf_nSKtTmezshPddirT8Pc9h-4B"/>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-white">Bulbasaur</p>
+<p class="text-[11px] font-medium text-slate-400">Grass/Poison Type</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pastel-green/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Liked</span>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-soft border border-yellow-50 dark:border-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center overflow-hidden">
+<img alt="Rick Sanchez" class="size-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDXh_Ys6UAkAmaKeo_Zb7685lutJ6zkMK2TA4Km9xIcJ38W3h3DUdbu-5yzUkNNgEeFB5Oit3aKZWzljRTouaUlHUf2AsytMBj86mUpNr2Vaa2MHMg7L3jWM5c5Ibw_g80xO6LTM0Gu0Jsv4iLUFRG7gqUsi-bwGUDqLo5OhxQs9C5qHlCPzCaRwh0TP8CtEECd67o3HBvVXY5Ggqh65WTMsahwvTFLCAzyQHGF9I_R00VjAauWMNMjXhCdFiVXy9SfIcZMovi0hXp"/>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-white">Rick Sanchez</p>
+<p class="text-[11px] font-medium text-slate-400">Human - Dimension C-137</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pastel-green/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Liked</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="w-full bg-white dark:bg-card-dark border-t border-slate-100 dark:border-slate-800 pb-safe pt-2 px-6 shrink-0">
+<div class="flex items-center justify-around max-w-xs mx-auto">
+<a class="flex flex-col items-center justify-center w-20 h-14 gap-1 text-slate-400 dark:text-slate-500 hover:text-primary group" href="#">
+<span class="material-symbols-outlined text-3xl group-hover:-translate-y-1 transition-transform">capture</span>
+<span class="text-[11px] font-medium">Vote</span>
+</a>
+<a class="flex flex-col items-center justify-center w-20 h-14 gap-1 text-pastel-orange group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-3xl group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="absolute -top-1 -right-1 size-2 bg-secondary rounded-full border-2 border-white dark:border-card-dark"></span>
+</div>
+<span class="text-[11px] font-bold">Dex</span>
+</a>
+</div>
+<div class="h-5 w-full"></div>
+</nav>
+
+</body></html>
