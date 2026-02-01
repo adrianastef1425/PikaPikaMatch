@@ -191,14 +191,14 @@ Abre el archivo `src/main/resources/application.yml` con tu editor de texto favo
 spring:
   data:
     mongodb:
-      # REEMPLAZA ESTA LÍNEA con tu connection string de MongoDB Atlas
+      # REEMPLAZA ESTA LÍNEA con tu connection string de MongoDB Atlas - MONGODB_URI
       uri: mongodb+srv://pikapikauser:tupassword@cluster0.xxxxx.mongodb.net/PikaPikaMatch?retryWrites=true&w=majority
 
 # Más abajo en el archivo, busca:
 external:
   apis:
     superhero:
-      # REEMPLAZA ESTA LÍNEA con tu API key de SuperHero
+      # REEMPLAZA ESTA LÍNEA con tu API key de SuperHero - SUPERHERO_API_KEY
       api-key: 1234567890abcdef
 ```
 
@@ -225,8 +225,6 @@ external:
 ```
 
 **Guarda el archivo.**
-
-> **💡 Nota:** También puedes usar variables de entorno del sistema si prefieres no modificar el archivo directamente. En ese caso, configura las variables `MONGODB_URI`, `SUPERHERO_API_KEY`, `PORT` y `CORS_ORIGIN` en tu sistema operativo antes de ejecutar el backend.
 
 #### 3.3 Instalar dependencias y compilar
 ```bash
