@@ -48,7 +48,7 @@ export const StatsCard = memo(function StatsCard({ character, stats, variant }: 
 
       {/* Character info and stats */}
       <div className="p-3 md:p-4">
-        <h3 className="font-display font-bold text-base md:text-lg mb-1 line-clamp-1">
+        <h3 className="font-display font-bold text-base md:text-lg mb-1 line-clamp-1 text-gray-900">
           {character.name}
         </h3>
         

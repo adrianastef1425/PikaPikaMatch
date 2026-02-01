@@ -68,7 +68,7 @@ export const RecentlyEvaluatedList = memo(function RecentlyEvaluatedList({ chara
 
           {/* Character info */}
           <div className="flex-1 min-w-0">
-            <h4 className="font-display font-bold text-sm md:text-base mb-1 truncate">
+            <h4 className="font-display font-bold text-sm md:text-base mb-1 truncate text-gray-900">
               {character.name}
             </h4>
             <span

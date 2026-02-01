@@ -171,7 +171,7 @@ export const CharacterCard = memo(function CharacterCard({
             {/* Info area - flexible height based on content */}
             <div className="p-3 sm:p-4 flex flex-col gap-2">
               <div>
-                <h3 className="font-display font-bold text-base sm:text-lg mb-1">
+                <h3 className="font-display font-bold text-base sm:text-lg mb-1 text-gray-900">
                   {character.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
