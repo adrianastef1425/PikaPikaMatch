@@ -51,6 +51,22 @@ El proyecto está configurado con:
 - Iconos: Material Symbols
 - Breakpoints responsive: mobile (<768px), desktop (≥768px)
 
+### Variables de Entorno
+
+El frontend requiere las siguientes variables de entorno:
+
+```bash
+# URL base del backend API
+VITE_API_BASE_URL=http://localhost:8080/api
+
+# (Opcional) Habilitar logs de debug para API
+VITE_DEBUG_API=true
+```
+
+Crea un archivo `.env` en la raíz del proyecto frontend con estas variables. Un archivo `.env.example` está disponible como plantilla.
+
+**Nota:** Las variables de entorno en Vite deben tener el prefijo `VITE_` para ser expuestas al código del cliente.
+
 ## Desarrollo
 
 1. Instalar dependencias: `npm install`

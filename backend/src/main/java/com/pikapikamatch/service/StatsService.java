@@ -79,7 +79,8 @@ public class StatsService {
     public List<CharacterStatsDTO> getTopLiked(Integer limit) {
         log.debug("Fetching top {} liked characters", limit);
         
-        List<Character> topLiked = characterRepository.findTopByOrderByTotalLikesDesc(limit);
+        PageRequest pageRequest = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "totalLikes"));
+        List<Character> topLiked = characterRepository.findByOrderByTotalLikesDesc(pageRequest);
         
         log.info("Found {} top liked characters", topLiked.size());
         
@@ -97,7 +98,8 @@ public class StatsService {
     public List<CharacterStatsDTO> getTopDisliked(Integer limit) {
         log.debug("Fetching top {} disliked characters", limit);
         
-        List<Character> topDisliked = characterRepository.findTopByOrderByTotalDislikesDesc(limit);
+        PageRequest pageRequest = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "totalDislikes"));
+        List<Character> topDisliked = characterRepository.findByOrderByTotalDislikesDesc(pageRequest);
         
         log.info("Found {} top disliked characters", topDisliked.size());
         

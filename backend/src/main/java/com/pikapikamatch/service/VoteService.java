@@ -8,6 +8,8 @@ import com.pikapikamatch.repository.CharacterRepository;
 import com.pikapikamatch.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,7 +74,8 @@ public class VoteService {
     public List<VoteResponseDTO> getRecentVotes(Integer limit) {
         log.debug("Fetching {} most recent votes", limit);
         
-        List<Vote> recentVotes = voteRepository.findTopByOrderByTimestampDesc(limit);
+        PageRequest pageRequest = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "timestamp"));
+        List<Vote> recentVotes = voteRepository.findByOrderByTimestampDesc(pageRequest);
         
         log.info("Found {} recent votes", recentVotes.size());
         

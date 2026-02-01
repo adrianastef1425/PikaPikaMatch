@@ -1,22 +1,30 @@
 import { useCallback } from 'react';
-import { mockApi } from '../services/mockApi';
+import { characterService } from '../services/characterService';
 import { useVotingContext } from '../context/VotingContext';
+import { ApiError } from '../services/api/errors';
 
 export function useCharacters() {
   const { setCurrentCharacter, setLoading, setError } = useVotingContext();
 
   const fetchRandomCharacter = useCallback(async () => {
-    console.log('fetchRandomCharacter called');
+    console.log('[useCharacters] Fetching random character');
     setLoading(true);
     setError(null);
 
     try {
-      const character = await mockApi.getRandomCharacter();
-      console.log('Fetched character:', character.name);
+      const character = await characterService.getRandomCharacter();
+      console.log('[useCharacters] Fetched character:', character.name);
       setCurrentCharacter(character);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch character';
-      console.error('Error fetching character:', errorMessage);
+      let errorMessage = 'Failed to fetch character';
+      
+      if (err instanceof ApiError) {
+        errorMessage = err.message;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+      
+      console.error('[useCharacters] Error:', errorMessage);
       setError(errorMessage);
       setCurrentCharacter(null);
     } finally {

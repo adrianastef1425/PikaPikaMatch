@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
-import { mockApi } from '../services/mockApi';
+import { voteService } from '../services/voteService';
 import { useVotingContext } from '../context/VotingContext';
-import type { Vote, EvaluatedCharacter } from '../types';
+import type { EvaluatedCharacter } from '../types';
+import { ApiError } from '../services/api/errors';
 
 export function useVoting() {
   const { currentCharacter, addVotedCharacter, setError } = useVotingContext();
@@ -15,20 +16,14 @@ export function useVoting() {
     setError(null);
 
     try {
-      const vote: Vote = {
-        characterId: currentCharacter.id,
-        type: voteType,
-        timestamp: Date.now(),
-      };
-
-      const result = await mockApi.submitVote(vote);
+      const result = await voteService.submitVote(currentCharacter, voteType);
 
       if (result.success) {
         // Add to voted characters list
         const evaluatedCharacter: EvaluatedCharacter = {
           ...currentCharacter,
           vote: voteType,
-          votedAt: vote.timestamp,
+          votedAt: Date.now(),
         };
         addVotedCharacter(evaluatedCharacter);
         return true;
@@ -36,7 +31,15 @@ export function useVoting() {
 
       return false;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to submit vote';
+      let errorMessage = 'Failed to submit vote';
+      
+      if (err instanceof ApiError) {
+        errorMessage = err.message;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+      
+      console.error('[useVoting] Error:', errorMessage);
       setError(errorMessage);
       return false;
     }

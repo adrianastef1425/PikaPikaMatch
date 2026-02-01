@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
-import { mockApi } from '../services/mockApi';
+import { statsService } from '../services/statsService';
+import { voteService } from '../services/voteService';
 import type { CharacterStats, EvaluatedCharacter, Character } from '../types';
+import { ApiError, NotFoundError } from '../services/api/errors';
 
 interface StatsData {
   favorites: Array<{ character: Character; stats: CharacterStats }>;
@@ -18,41 +20,44 @@ export function useStats() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchStats = useCallback(async () => {
+    console.log('[useStats] Fetching statistics');
     setIsLoading(true);
     setError(null);
 
     try {
       // Fetch all statistics in parallel
-      const [favoritesStats, controversialStats, recentVotes] = await Promise.all([
-        mockApi.getFavorites(3),
-        mockApi.getControversial(2),
-        mockApi.getRecentVotes(4),
+      const [favorites, controversial, recentVotes] = await Promise.all([
+        statsService.getTopLiked(3).catch(err => {
+          if (err instanceof NotFoundError) return [];
+          throw err;
+        }),
+        statsService.getTopDisliked(2).catch(err => {
+          if (err instanceof NotFoundError) return [];
+          throw err;
+        }),
+        voteService.getRecentVotes(4).catch(err => {
+          if (err instanceof NotFoundError) return [];
+          throw err;
+        }),
       ]);
-
-      // Map character IDs to full character objects
-      const favorites = favoritesStats.map(stats => {
-        const character = mockApi.getCharacterById(stats.characterId);
-        if (!character) {
-          throw new Error(`Character with id ${stats.characterId} not found`);
-        }
-        return { character, stats };
-      });
-
-      const controversial = controversialStats.map(stats => {
-        const character = mockApi.getCharacterById(stats.characterId);
-        if (!character) {
-          throw new Error(`Character with id ${stats.characterId} not found`);
-        }
-        return { character, stats };
-      });
 
       setStats({
         favorites,
         controversial,
         recentlyEvaluated: recentVotes,
       });
+      
+      console.log('[useStats] Statistics fetched successfully');
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch statistics';
+      let errorMessage = 'Failed to fetch statistics';
+      
+      if (err instanceof ApiError) {
+        errorMessage = err.message;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+      
+      console.error('[useStats] Error:', errorMessage);
       setError(errorMessage);
     } finally {
       setIsLoading(false);

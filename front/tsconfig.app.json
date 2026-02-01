@@ -28,8 +28,8 @@
   "exclude": [
     "src/**/*.test.tsx",
     "src/**/*.test.ts",
-    "src/**/*.test.manual.tsx",
-    "src/**/*.test.manual.ts",
+    "src/**/*.test.*.tsx",
+    "src/**/*.test.*.ts",
     "src/**/__tests__"
   ]
 }

@@ -1,6 +1,7 @@
 package com.pikapikamatch.repository;
 
 import com.pikapikamatch.model.entity.Character;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -53,17 +54,17 @@ public interface CharacterRepository extends MongoRepository<Character, String> 
      * Finds the top N characters ordered by total likes (descending).
      * Used for getting rankings of most liked characters.
      *
-     * @param limit The maximum number of characters to return
+     * @param pageable Pageable object containing limit and sort information
      * @return List of characters sorted by totalLikes in descending order
      */
-    List<Character> findTopByOrderByTotalLikesDesc(Integer limit);
+    List<Character> findByOrderByTotalLikesDesc(Pageable pageable);
 
     /**
      * Finds the top N characters ordered by total dislikes (descending).
      * Used for getting rankings of most disliked characters.
      *
-     * @param limit The maximum number of characters to return
+     * @param pageable Pageable object containing limit and sort information
      * @return List of characters sorted by totalDislikes in descending order
      */
-    List<Character> findTopByOrderByTotalDislikesDesc(Integer limit);
+    List<Character> findByOrderByTotalDislikesDesc(Pageable pageable);
 }

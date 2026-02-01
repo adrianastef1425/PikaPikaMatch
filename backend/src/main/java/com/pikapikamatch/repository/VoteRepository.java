@@ -1,6 +1,7 @@
 package com.pikapikamatch.repository;
 
 import com.pikapikamatch.model.entity.Vote;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +26,8 @@ public interface VoteRepository extends MongoRepository<Vote, String> {
      * Finds the top N most recent votes ordered by timestamp (descending).
      * Used to get the recent evaluation history.
      *
-     * @param limit The maximum number of votes to return
+     * @param pageable Pageable object containing limit and sort information
      * @return List of votes sorted by timestamp in descending order (most recent first)
      */
-    List<Vote> findTopByOrderByTimestampDesc(Integer limit);
+    List<Vote> findByOrderByTimestampDesc(Pageable pageable);
 }
