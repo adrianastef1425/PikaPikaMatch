@@ -37,12 +37,22 @@ export const CharacterCard = memo(function CharacterCard({
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
-  }, [character.id]);
+    
+    // Check if image is already cached/loaded
+    const img = new Image();
+    img.src = character.imageUrl;
+    
+    if (img.complete) {
+      // Image is already loaded (cached)
+      console.log('[CharacterCard] Image already cached:', character.name);
+      setImageLoaded(true);
+    }
+  }, [character.id, character.imageUrl, character.name]);
   
   const sourceColors = {
-    pokemon: 'bg-pastel-yellow text-yellow-900',
-    rickandmorty: 'bg-pastel-green text-green-900',
-    superhero: 'bg-pastel-red text-red-900',
+    pokemon: 'bg-yellow-200 text-yellow-900 dark:bg-yellow-900/30 dark:text-yellow-300',
+    rickandmorty: 'bg-cyan-200 text-cyan-900 dark:bg-cyan-900/30 dark:text-cyan-300',
+    superhero: 'bg-purple-200 text-purple-900 dark:bg-purple-900/30 dark:text-purple-300',
   };
 
   // Handle drag end to detect swipe gestures

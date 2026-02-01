@@ -20,10 +20,14 @@ export function VotingView() {
   const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null);
   const [showSparkles, setShowSparkles] = useState(false);
 
-  // Fetch initial character on mount
+  // Fetch initial character on mount only if no character is loaded
   useEffect(() => {
-    fetchRandomCharacter();
-  }, [fetchRandomCharacter]);
+    if (!currentCharacter && !isLoading) {
+      console.log('[VotingView] No character loaded, fetching...');
+      fetchRandomCharacter();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array - only run on mount
 
   const handleLikeClick = async () => {
     if (isAnimating || !currentCharacter) return;
