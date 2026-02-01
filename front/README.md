@@ -58,9 +58,6 @@ El frontend requiere las siguientes variables de entorno:
 ```bash
 # URL base del backend API
 VITE_API_BASE_URL=http://localhost:8080/api
-
-# (Opcional) Habilitar logs de debug para API
-VITE_DEBUG_API=true
 ```
 
 Crea un archivo `.env` en la raíz del proyecto frontend con estas variables. Un archivo `.env.example` está disponible como plantilla.

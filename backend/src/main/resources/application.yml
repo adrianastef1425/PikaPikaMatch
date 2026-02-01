@@ -4,7 +4,7 @@ spring:
   
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017/pikapikamatch}
+      uri: ${MONGODB_URI}
       auto-index-creation: true
   
   jackson:
@@ -13,7 +13,7 @@ spring:
     time-zone: UTC
 
 server:
-  port: ${PORT:8080}
+  port: 8080
   error:
     include-message: always
     include-stacktrace: never
@@ -36,7 +36,7 @@ external:
       timeout: 5000
     superhero:
       base-url: https://superheroapi.com/api
-      api-key: ${SUPERHERO_API_KEY:}
+      api-key: ${SUPERHERO_API_KEY}
       timeout: 5000
   
   retry:
@@ -45,7 +45,7 @@ external:
 
 # CORS
 cors:
-  allowed-origins: ${CORS_ORIGIN:http://localhost:5173,http://localhost:3000}
+  allowed-origins: http://localhost:5173,http://localhost:3000
   allowed-methods: GET,POST,PUT,DELETE,OPTIONS
   allowed-headers: "*"
   allow-credentials: true

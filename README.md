@@ -279,7 +279,6 @@ Abre el archivo `.env` y verifica que tenga:
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
-VITE_DEBUG_API=true
 ```
 
 **Guarda el archivo.**
