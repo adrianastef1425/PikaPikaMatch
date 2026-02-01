@@ -1,19 +1,23 @@
 # PikaPikaMatch 🎮
 
-Aplicación web de votación de personajes que permite a los usuarios votar entre dos personajes aleatorios de diferentes universos (Pokémon, Rick and Morty, Superhéroes) y ver estadísticas de votación en tiempo real.
+Aplicación web de votación de personajes que permite a los usuarios votar entre personajes aleatorios de diferentes universos (Pokémon, Rick and Morty, Superhéroes) y ver estadísticas de votación en tiempo real.
+
+![Java](https://img.shields.io/badge/Java-21-orange) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.2-green) ![React](https://img.shields.io/badge/React-19-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
 
 ## 📋 Tabla de Contenidos
 
 - [Tecnologías](#-tecnologías)
 - [Requisitos Previos](#-requisitos-previos)
-- [Instalación](#-instalación)
-  - [Base de Datos](#1-base-de-datos-mongodb-atlas)
-  - [Backend](#2-backend)
-  - [Frontend](#3-frontend)
+- [Guía de Instalación Completa](#-guía-de-instalación-completa)
+  - [Paso 0: Clonar el Repositorio](#paso-0-clonar-el-repositorio)
+  - [Paso 1: Configurar MongoDB Atlas](#paso-1-configurar-mongodb-atlas)
+  - [Paso 2: Obtener API Key de SuperHero](#paso-2-obtener-api-key-de-superhero)
+  - [Paso 3: Configurar y Ejecutar Backend](#paso-3-configurar-y-ejecutar-backend)
+  - [Paso 4: Configurar y Ejecutar Frontend](#paso-4-configurar-y-ejecutar-frontend)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Flujos de la Aplicación](#-flujos-de-la-aplicación)
-- [Variables de Entorno](#-variables-de-entorno)
 - [Scripts Disponibles](#-scripts-disponibles)
+- [Troubleshooting](#-troubleshooting)
 
 ## 🚀 Tecnologías
 
@@ -36,143 +40,287 @@ Aplicación web de votación de personajes que permite a los usuarios votar entr
 - **Axios** - Cliente HTTP
 
 ### Base de Datos
-- **MongoDB Atlas** - Base de datos NoSQL en la nube
+- **MongoDB Atlas** - Base de datos NoSQL en la nube (gratis)
 
 ### APIs Externas
-- **PokeAPI** - Datos de Pokémon
-- **Rick and Morty API** - Datos de personajes de Rick and Morty
-- **SuperHero API** - Datos de superhéroes
+- **PokeAPI** - Datos de Pokémon (gratis, sin autenticación)
+- **Rick and Morty API** - Datos de personajes (gratis, sin autenticación)
+- **SuperHero API** - Datos de superhéroes (gratis, requiere registro)
 
 ## 📦 Requisitos Previos
 
-Antes de comenzar, asegúrate de tener instalado:
+Antes de comenzar, necesitas tener instalado lo siguiente en tu computadora:
 
-- **Java 21 o superior** - [Descargar](https://www.oracle.com/java/technologies/downloads/)
-- **Maven 3.8+** - [Descargar](https://maven.apache.org/download.cgi)
-- **Node.js 18+** y **npm** - [Descargar](https://nodejs.org/)
-- **Cuenta MongoDB Atlas** - [Crear cuenta gratuita](https://www.mongodb.com/cloud/atlas/register)
-- **SuperHero API Key** - [Obtener key](https://superheroapi.com/)
+### 1. Java Development Kit (JDK) 21
+**¿Cómo verificar si lo tienes?**
+```bash
+java -version
+```
+Deberías ver algo como: `java version "21.0.x"`
 
-## 🔧 Instalación
+**Si no lo tienes:**
+- **Windows/Mac/Linux**: [Descargar Oracle JDK 21](https://www.oracle.com/java/technologies/downloads/#java21)
+- **Mac (con Homebrew)**: `brew install openjdk@21`
+- **Linux (Ubuntu/Debian)**: `sudo apt install openjdk-21-jdk`
 
-### 1. Base de Datos (MongoDB Atlas)
+### 2. Apache Maven 3.8+
+**¿Cómo verificar si lo tienes?**
+```bash
+mvn -version
+```
+Deberías ver algo como: `Apache Maven 3.8.x`
 
-1. Crea una cuenta en [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
-2. Crea un nuevo cluster (el tier gratuito es suficiente)
-3. Configura el acceso a la red:
-   - Ve a "Network Access"
-   - Añade tu IP o permite acceso desde cualquier lugar (0.0.0.0/0) para desarrollo
-4. Crea un usuario de base de datos:
-   - Ve a "Database Access"
-   - Crea un nuevo usuario con permisos de lectura/escritura
-5. Obtén tu connection string:
-   - Ve a "Database" → "Connect" → "Connect your application"
-   - Copia el connection string (formato: `mongodb+srv://...`)
-   - Reemplaza `<password>` con tu contraseña
+**Si no lo tienes:**
+- **Windows/Mac/Linux**: [Descargar Maven](https://maven.apache.org/download.cgi)
+- **Mac (con Homebrew)**: `brew install maven`
+- **Linux (Ubuntu/Debian)**: `sudo apt install maven`
 
-### 2. Backend
+### 3. Node.js 18+ y npm
+**¿Cómo verificar si lo tienes?**
+```bash
+node -version
+npm -version
+```
+Deberías ver versiones 18 o superiores.
 
-1. Navega al directorio del backend:
+**Si no lo tienes:**
+- **Todos los sistemas**: [Descargar Node.js](https://nodejs.org/) (incluye npm)
+- **Mac (con Homebrew)**: `brew install node`
+- **Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
+### 4. Git
+**¿Cómo verificar si lo tienes?**
+```bash
+git --version
+```
+
+**Si no lo tienes:**
+- **Todos los sistemas**: [Descargar Git](https://git-scm.com/downloads)
+- **Mac (con Homebrew)**: `brew install git`
+- **Linux (Ubuntu/Debian)**: `sudo apt install git`
+
+## 🔧 Guía de Instalación Completa
+
+### Paso 0: Clonar el Repositorio
+
+1. Abre tu terminal o línea de comandos
+
+2. Navega a la carpeta donde quieres guardar el proyecto:
+```bash
+cd ~/Documents  # o la carpeta que prefieras
+```
+
+3. Clona el repositorio:
+```bash
+git clone https://github.com/tu-usuario/pikapikamatch.git
+```
+
+4. Entra al directorio del proyecto:
+```bash
+cd pikapikamatch
+```
+
+### Paso 1: Configurar MongoDB Atlas
+
+MongoDB Atlas es una base de datos en la nube gratuita. Sigue estos pasos:
+
+#### 1.1 Crear cuenta
+1. Ve a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+2. Regístrate con tu email o cuenta de Google
+3. Completa el formulario de registro
+
+#### 1.2 Crear un cluster (base de datos)
+1. Después de iniciar sesión, haz clic en **"Build a Database"**
+2. Selecciona **"M0 FREE"** (el plan gratuito)
+3. Elige un proveedor de nube (AWS, Google Cloud o Azure) - cualquiera funciona
+4. Selecciona una región cercana a tu ubicación
+5. Dale un nombre a tu cluster (o deja el predeterminado)
+6. Haz clic en **"Create"**
+7. Espera 1-3 minutos mientras se crea el cluster
+
+#### 1.3 Configurar acceso de red
+1. En el menú lateral, ve a **"Network Access"**
+2. Haz clic en **"Add IP Address"**
+3. Haz clic en **"Allow Access from Anywhere"** (para desarrollo)
+4. Haz clic en **"Confirm"**
+
+#### 1.4 Crear usuario de base de datos
+1. En el menú lateral, ve a **"Database Access"**
+2. Haz clic en **"Add New Database User"**
+3. Selecciona **"Password"** como método de autenticación
+4. Ingresa un nombre de usuario (ejemplo: `pikapikauser`)
+5. Haz clic en **"Autogenerate Secure Password"** y **copia la contraseña** (¡guárdala!)
+6. En "Database User Privileges", selecciona **"Read and write to any database"**
+7. Haz clic en **"Add User"**
+
+#### 1.5 Obtener connection string
+1. Ve a **"Database"** en el menú lateral
+2. Haz clic en **"Connect"** en tu cluster
+3. Selecciona **"Connect your application"**
+4. Copia el connection string (se ve así):
+   ```
+   mongodb+srv://pikapikauser:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   ```
+5. **Importante**: Reemplaza `<password>` con la contraseña que copiaste antes
+6. Agrega el nombre de la base de datos después del `/`:
+   ```
+   mongodb+srv://pikapikauser:tupassword@cluster0.xxxxx.mongodb.net/PikaPikaMatch?retryWrites=true&w=majority
+   ```
+
+### Paso 2: Obtener API Key de SuperHero
+
+1. Ve a [SuperHero API](https://superheroapi.com/)
+2. Haz clic en **"Get your API key"**
+3. Inicia sesión con Facebook (es el único método disponible)
+4. Copia tu API key (se ve así: `1234567890abcdef`)
+
+### Paso 3: Configurar y Ejecutar Backend
+
+#### 3.1 Navegar al directorio del backend
 ```bash
 cd backend
 ```
 
-2. Copia el archivo de ejemplo de variables de entorno:
-```bash
-cp .env.example .env
-```
+#### 3.2 Configurar las variables en application.yml
 
-3. Configura las variables de entorno en el archivo `.env`:
+Abre el archivo `src/main/resources/application.yml` con tu editor de texto favorito y reemplaza los valores:
 
-```env
-# MongoDB Configuration
-MONGODB_URI=mongodb+srv://TU_USUARIO:TU_PASSWORD@cluster.mongodb.net/PikaPikaMatch?retryWrites=true&w=majority
+**Busca estas líneas y reemplázalas:**
 
-# SuperHero API Key
-SUPERHERO_API_KEY=TU_API_KEY_AQUI
-
-# Server Configuration
-PORT=8080
-
-# CORS Configuration
-CORS_ORIGIN=http://localhost:5173,http://localhost:3000
-```
-
-4. Estas variables del `.env` se mapean automáticamente en el `application.yml`:
-
-**Archivo `.env`:**
-```env
-MONGODB_URI=mongodb+srv://usuario:pass@cluster.mongodb.net/PikaPikaMatch
-SUPERHERO_API_KEY=7bccb599656ee06afaacdfffa3332a49
-PORT=8080
-CORS_ORIGIN=http://localhost:5173
-```
-
-**Se reemplaza en `application.yml`:**
 ```yaml
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://usuario:pass@cluster.mongodb.net/PikaPikaMatch  # ← MONGODB_URI
+      # REEMPLAZA ESTA LÍNEA con tu connection string de MongoDB Atlas
+      uri: mongodb+srv://pikapikauser:tupassword@cluster0.xxxxx.mongodb.net/PikaPikaMatch?retryWrites=true&w=majority
 
-server:
-  port: 8080  # ← PORT (o valor por defecto)
+# Más abajo en el archivo, busca:
+external:
+  apis:
+    superhero:
+      # REEMPLAZA ESTA LÍNEA con tu API key de SuperHero
+      api-key: 1234567890abcdef
+```
+
+**Ejemplo completo de cómo debería verse:**
+
+```yaml
+spring:
+  application:
+    name: pikapikamatch-backend
+  
+  data:
+    mongodb:
+      uri: mongodb+srv://miusuario:mipassword@cluster0.abc123.mongodb.net/PikaPikaMatch?retryWrites=true&w=majority
+      auto-index-creation: true
+
+# ... (otras configuraciones)
 
 external:
   apis:
     superhero:
-      api-key: 7bccb599656ee06afaacdfffa3332a49  # ← SUPERHERO_API_KEY
-
-cors:
-  allowed-origins: http://localhost:5173  # ← CORS_ORIGIN
+      base-url: https://superheroapi.com/api
+      api-key: 7bccb599656ee06afaacdfffa3332a49
+      timeout: 5000
 ```
 
-**Nota:** El proyecto usa la librería `dotenv-java` para cargar automáticamente las variables del archivo `.env` al iniciar la aplicación.
+**Guarda el archivo.**
 
-5. Instala las dependencias y compila el proyecto:
+> **💡 Nota:** También puedes usar variables de entorno del sistema si prefieres no modificar el archivo directamente. En ese caso, configura las variables `MONGODB_URI`, `SUPERHERO_API_KEY`, `PORT` y `CORS_ORIGIN` en tu sistema operativo antes de ejecutar el backend.
+
+#### 3.3 Instalar dependencias y compilar
 ```bash
 mvn clean install
 ```
+⏱️ Esto puede tardar 2-5 minutos la primera vez.
 
-6. Ejecuta el backend:
+#### 3.4 Ejecutar el backend
 ```bash
 mvn spring-boot:run
 ```
 
-El backend estará disponible en `http://localhost:8080`
+✅ **Si todo está bien, verás:**
+```
+Started PikaPikaMatchApplication in X.XXX seconds
+```
 
-**Documentación API (Swagger):** `http://localhost:8080/swagger-ui.html`
+🌐 **El backend estará corriendo en:** `http://localhost:8080`
 
+📚 **Documentación API (Swagger):** `http://localhost:8080/swagger-ui.html`
 
-### 3. Frontend
+**⚠️ Deja esta terminal abierta y ejecutándose.**
 
-1. Navega al directorio del frontend:
+### Paso 4: Configurar y Ejecutar Frontend
+
+#### 4.1 Abrir una NUEVA terminal
+No cierres la terminal del backend. Abre una nueva terminal/ventana.
+
+#### 4.2 Navegar al directorio del frontend
 ```bash
+# Desde la raíz del proyecto:
 cd front
+
+# Si estás en el directorio backend:
+cd ../front
 ```
 
-2. Copia el archivo de ejemplo de variables de entorno:
+#### 4.3 Crear archivo de configuración
 ```bash
+# En Mac/Linux:
 cp .env.example .env
+
+# En Windows (PowerShell):
+copy .env.example .env
+
+# En Windows (CMD):
+copy .env.example .env
 ```
 
-3. Configura las variables de entorno en `.env`:
+#### 4.4 Editar el archivo .env
+Abre el archivo `.env` y verifica que tenga:
+
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
 VITE_DEBUG_API=true
 ```
 
-4. Instala las dependencias:
+**Guarda el archivo.**
+
+#### 4.5 Instalar dependencias
 ```bash
 npm install
 ```
+⏱️ Esto puede tardar 2-5 minutos la primera vez.
 
-5. Ejecuta el servidor de desarrollo:
+#### 4.6 Ejecutar el frontend
 ```bash
 npm run dev
 ```
 
-El frontend estará disponible en `http://localhost:5173`
+✅ **Si todo está bien, verás:**
+```
+  VITE v7.x.x  ready in XXX ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+```
+
+🌐 **El frontend estará corriendo en:** `http://localhost:5173`
+
+### 🎉 ¡Listo! Abre tu navegador
+
+1. Abre tu navegador favorito (Chrome, Firefox, Safari, Edge)
+2. Ve a: `http://localhost:5173`
+3. Deberías ver la pantalla de inicio de PikaPikaMatch
+4. ¡Comienza a votar por tus personajes favoritos!
+
+### 📝 Resumen de URLs
+
+| Servicio | URL | Descripción |
+|----------|-----|-------------|
+| **Frontend** | http://localhost:5173 | Aplicación web principal |
+| **Backend API** | http://localhost:8080/api | API REST |
+| **Swagger UI** | http://localhost:8080/swagger-ui.html | Documentación interactiva de la API |
 
 ## 📁 Estructura del Proyecto
 
@@ -194,6 +342,7 @@ pikapikamatch/
 │   │   │       └── application.yml  # Configuración de Spring
 │   │   └── test/                    # Tests unitarios
 │   ├── logs/                        # Logs de la aplicación
+│   ├── .env                         # Variables de entorno (crear este archivo)
 │   └── pom.xml                      # Dependencias Maven
 │
 ├── front/                           # Frontend React + TypeScript
@@ -207,31 +356,21 @@ pikapikamatch/
 │   │   │   ├── VotingView.tsx       # Vista de votación
 │   │   │   └── DexView.tsx          # Vista de estadísticas
 │   │   ├── services/                # Servicios API
-│   │   │   ├── api/                 # Cliente Axios
-│   │   │   ├── characterService.ts  # Servicio de personajes
-│   │   │   ├── voteService.ts       # Servicio de votación
-│   │   │   └── statsService.ts      # Servicio de estadísticas
 │   │   ├── hooks/                   # Custom hooks
-│   │   │   ├── useCharacters.ts     # Hook para personajes
-│   │   │   ├── useVoting.ts         # Hook para votación
-│   │   │   └── useStats.ts          # Hook para estadísticas
 │   │   ├── context/                 # Context API
-│   │   │   └── VotingContext.tsx    # Estado global de votación
 │   │   ├── types/                   # Tipos TypeScript
 │   │   └── utils/                   # Utilidades y constantes
-│   ├── public/                      # Archivos estáticos
+│   ├── .env                         # Variables de entorno (crear este archivo)
 │   └── package.json                 # Dependencias npm
 │
-└── mockups/                         # Diseños UI
-    ├── desktop/                     # Mockups desktop
-    └── mobile/                      # Mockups mobile
+└── README.md                        # Este archivo
 ```
 
 ## 🔄 Flujos de la Aplicación
 
 ### 1. Flujo de Inicio
 ```
-Usuario accede → SplashScreen → Animación de bienvenida → VotingView
+Usuario accede → SplashScreen (2 segundos) → VotingView
 ```
 
 ### 2. Flujo de Votación
@@ -257,70 +396,18 @@ Usuario accede → SplashScreen → Animación de bienvenida → VotingView
 
 ### 3. Flujo de Estadísticas (DexView)
 ```
-1. Usuario navega a DexView
+1. Usuario navega a DexView (botón en el header)
    ↓
 2. Frontend solicita estadísticas al backend
    ↓
 3. Backend consulta MongoDB y calcula:
-   - Total de votos
-   - Top personajes más votados
-   - Top personajes menos votados
-   - Distribución por universo
+   - Community Favorites (más likes)
+   - Most Controversial (más dislikes)
+   - Recently Evaluated (últimos votados)
    ↓
 4. Frontend muestra estadísticas con animaciones
    ↓
-5. Usuario puede filtrar por universo
-```
-
-### 4. Flujo de Datos Backend
-
-```
-Controller → Service → Repository → MongoDB
-    ↓           ↓
-    ↓      External APIs
-    ↓      (PokeAPI, etc.)
-    ↓
-Response DTO
-```
-
-### 5. Arquitectura de Componentes Frontend
-
-```
-App
-├── MainLayout
-│   ├── Header (navegación)
-│   └── Outlet (páginas)
-│       ├── SplashScreen
-│       ├── VotingView
-│       │   ├── CharacterCard
-│       │   └── VoteButtons
-│       └── DexView
-│           ├── StatsCard
-│           └── CharacterList
-```
-
-## 🔐 Variables de Entorno
-
-### Backend (.env)
-```env
-# MongoDB
-MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/PikaPikaMatch
-
-# APIs Externas
-SUPERHERO_API_KEY=tu_api_key
-
-# Servidor
-PORT=8080
-CORS_ORIGIN=http://localhost:5173
-```
-
-### Frontend (.env)
-```env
-# API Backend
-VITE_API_BASE_URL=http://localhost:8080/api
-
-# Debug (opcional)
-VITE_DEBUG_API=true
+5. Layout responsive: sidebar en desktop, vertical en mobile
 ```
 
 ## 📜 Scripts Disponibles
@@ -355,25 +442,70 @@ npm run preview
 npm run lint
 ```
 
-## 🧪 Testing
+## 🐛 Troubleshooting
 
-### Backend
-```bash
-cd backend
-mvn test
-```
+### ❌ Error: "java: command not found"
+**Problema:** Java no está instalado o no está en el PATH.
 
-### Frontend
-```bash
-cd front
-npm run lint
-```
+**Solución:**
+1. Instala Java 21 (ver [Requisitos Previos](#-requisitos-previos))
+2. Verifica la instalación: `java -version`
 
-## 📚 Documentación Adicional
+### ❌ Error: "mvn: command not found"
+**Problema:** Maven no está instalado o no está en el PATH.
 
-- [Backend README](./backend/README.md) - Documentación detallada del backend
-- [Frontend README](./front/README.md) - Documentación detallada del frontend
-- [API Documentation](http://localhost:8080/swagger-ui.html) - Swagger UI (requiere backend ejecutándose)
+**Solución:**
+1. Instala Maven (ver [Requisitos Previos](#-requisitos-previos))
+2. Verifica la instalación: `mvn -version`
+
+### ❌ Error: "MongoTimeoutException" o "Connection refused"
+**Problema:** No se puede conectar a MongoDB Atlas.
+
+**Solución:**
+1. Verifica que tu `MONGODB_URI` en `.env` sea correcto
+2. Asegúrate de haber reemplazado `<password>` con tu contraseña real
+3. Verifica que hayas configurado "Network Access" en MongoDB Atlas
+4. Verifica tu conexión a internet
+
+### ❌ Error: "Port 8080 is already in use"
+**Problema:** Otro programa está usando el puerto 8080.
+
+**Solución:**
+1. Cierra cualquier otra aplicación que use el puerto 8080
+2. O cambia el puerto en `backend/.env`: `PORT=8081`
+3. Si cambias el puerto, actualiza también `front/.env`: `VITE_API_BASE_URL=http://localhost:8081/api`
+
+### ❌ Error: "CORS policy" en el navegador
+**Problema:** El backend no permite peticiones desde el frontend.
+
+**Solución:**
+1. Verifica que `CORS_ORIGIN` en `backend/.env` incluya `http://localhost:5173`
+2. Reinicia el backend después de cambiar el `.env`
+
+### ❌ Frontend muestra "Failed to fetch character"
+**Problema:** El backend no está corriendo o hay un error en la API.
+
+**Solución:**
+1. Verifica que el backend esté corriendo en `http://localhost:8080`
+2. Abre `http://localhost:8080/swagger-ui.html` para verificar que el backend funciona
+3. Verifica tu `SUPERHERO_API_KEY` en `backend/.env`
+4. Revisa los logs del backend en la terminal
+
+### ❌ Las imágenes no cargan
+**Problema:** Las APIs externas pueden estar lentas o bloqueadas.
+
+**Solución:**
+1. Verifica tu conexión a internet
+2. Espera unos segundos, las imágenes pueden tardar en cargar
+3. Las APIs de PokeAPI y Rick&Morty no requieren autenticación
+4. Verifica tu API key de SuperHero
+
+### 🆘 ¿Necesitas más ayuda?
+
+1. Revisa los logs del backend en la terminal donde ejecutaste `mvn spring-boot:run`
+2. Revisa los logs del frontend en la consola del navegador (F12 → Console)
+3. Revisa los logs de la aplicación en `backend/logs/`
+4. Consulta la documentación de la API en `http://localhost:8080/swagger-ui.html`
 
 ## 🎨 Características
 
@@ -381,24 +513,19 @@ npm run lint
 - ✅ Animaciones fluidas con Framer Motion
 - ✅ Diseño responsive (mobile y desktop)
 - ✅ Estadísticas en tiempo real
-- ✅ Integración con APIs externas
+- ✅ Integración con 3 APIs externas
 - ✅ Persistencia de datos en MongoDB
 - ✅ Documentación API con Swagger
+- ✅ Modo oscuro/claro
 - ✅ Optimizaciones de rendimiento (code splitting, lazy loading)
+- ✅ Skeleton loaders para mejor UX
 
-## 🐛 Troubleshooting
+## 📚 Documentación Adicional
 
-### Backend no inicia
-- Verifica que Java 21 esté instalado: `java -version`
-- Verifica que MongoDB URI sea correcto
-- Revisa los logs en `backend/logs/`
+- [Backend README](./backend/README.md) - Documentación detallada del backend
+- [Frontend README](./front/README.md) - Documentación detallada del frontend
+- [API Documentation](http://localhost:8080/swagger-ui.html) - Swagger UI (requiere backend ejecutándose)
 
-### Frontend no conecta con Backend
-- Verifica que el backend esté ejecutándose en el puerto correcto
-- Verifica CORS_ORIGIN en backend/.env
-- Verifica VITE_API_BASE_URL en front/.env
+---
 
-### Errores de APIs externas
-- Verifica tu API key de SuperHero
-- Las APIs de PokeAPI y Rick&Morty no requieren autenticación
-
+Desarrollado con ❤️ para la comunidad de fans de personajes
