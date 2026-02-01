@@ -220,7 +220,7 @@ external:
   apis:
     superhero:
       base-url: https://superheroapi.com/api
-      api-key: 7bccb599656ee06afaacdfffa3332a49
+      api-key: 7321599656ee06afaacdbbba3332a54
       timeout: 5000
 ```
 
