@@ -1,6 +1,7 @@
 package com.pikapikamatch.service;
 
 import com.pikapikamatch.exception.ExternalApiException;
+import com.pikapikamatch.exception.ResourceNotFoundException;
 import com.pikapikamatch.model.dto.CharacterDTO;
 import com.pikapikamatch.model.dto.CharacterStatsDTO;
 import com.pikapikamatch.model.dto.VoteRequestDTO;
@@ -13,6 +14,7 @@ import com.pikapikamatch.util.CharacterMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,51 +77,106 @@ public class CharacterService {
     }
 
     /**
-     * Gets Pikachu's status from the database, or fetches from PokeAPI if not found.
+     * Gets a character's status by name from the database.
      *
-     * @return CharacterStatsDTO with Pikachu's statistics
-     * @throws ExternalApiException if Pikachu cannot be found in database or API
+     * @param name The character name to search for (case-insensitive)
+     * @return CharacterStatsDTO with the character's statistics
+     * @throws com.pikapikamatch.exception.ResourceNotFoundException if character not found
      */
-    public CharacterStatsDTO getPikachuStatus() {
-        log.debug("Fetching Pikachu status");
+    public CharacterStatsDTO getCharacterByName(String name) {
+        log.debug("Fetching character status for: {}", name);
         
-        // First, try to find Pikachu in the database
-        Optional<Character> pikachuOpt = characterRepository.findByNameIgnoreCase("Pikachu");
+        // Search for character in the database (case-insensitive)
+        Optional<Character> characterOpt = characterRepository.findByNameIgnoreCase(name);
         
-        if (pikachuOpt.isPresent()) {
-            log.info("Found Pikachu in database with {} votes", pikachuOpt.get().getTotalVotes());
-            return CharacterMapper.toStatsDTO(pikachuOpt.get());
-        }
-        
-        // If not in database, fetch from PokeAPI
-        log.debug("Pikachu not found in database, fetching from PokeAPI");
-        try {
-            CharacterDTO pikachuDTO = retryService.executeWithRetry(
-                () -> pokeApiService.getPokemonByName("pikachu"),
-                "PokeAPI-Pikachu"
+        if (characterOpt.isEmpty()) {
+            log.warn("Character not found in database: {}", name);
+            throw new com.pikapikamatch.exception.ResourceNotFoundException(
+                "Character not found: " + name
             );
-            
-            // Convert to CharacterStatsDTO with zero votes
-            CharacterStatsDTO stats = CharacterStatsDTO.builder()
-                .id(pikachuDTO.getId())
-                .externalId(pikachuDTO.getExternalId())
-                .name(pikachuDTO.getName())
-                .source(pikachuDTO.getSource())
-                .imageUrl(pikachuDTO.getImageUrl())
-                .description(pikachuDTO.getDescription())
-                .totalLikes(0)
-                .totalDislikes(0)
-                .totalVotes(0)
-                .likePercentage(0.0)
-                .dislikePercentage(0.0)
-                .build();
-            
-            log.info("Successfully fetched Pikachu from PokeAPI (no votes yet)");
-            return stats;
-        } catch (Exception e) {
-            log.error("Failed to fetch Pikachu from PokeAPI", e);
-            throw new ExternalApiException("Pikachu data is unavailable", e);
         }
+        
+        Character character = characterOpt.get();
+        log.info("Found character '{}' in database with {} votes", 
+            character.getName(), character.getTotalVotes());
+        
+        return CharacterMapper.toStatsDTO(character);
+    }
+
+    /**
+     * Adds likes to a character by name.
+     *
+     * @param name The character name to search for (case-insensitive)
+     * @param amount The amount of likes to add
+     * @return CharacterStatsDTO with updated statistics
+     * @throws com.pikapikamatch.exception.ResourceNotFoundException if character not found
+     */
+    @Transactional
+    public CharacterStatsDTO addLikesByName(String name, Integer amount) {
+        log.debug("Adding {} likes to character: {}", amount, name);
+        
+        // Search for character in the database (case-insensitive)
+        Optional<Character> characterOpt = characterRepository.findByNameIgnoreCase(name);
+        
+        if (characterOpt.isEmpty()) {
+            log.warn("Character not found in database: {}", name);
+            throw new com.pikapikamatch.exception.ResourceNotFoundException(
+                "Character not found: " + name
+            );
+        }
+        
+        Character character = characterOpt.get();
+        
+        // Increment like counter by the specified amount
+        character.setTotalLikes(character.getTotalLikes() + amount);
+        character.setTotalVotes(character.getTotalLikes() + character.getTotalDislikes());
+        
+        Character updatedCharacter = characterRepository.save(character);
+        log.info("Added {} likes to '{}': {} total likes, {} total votes", 
+            amount,
+            updatedCharacter.getName(), 
+            updatedCharacter.getTotalLikes(),
+            updatedCharacter.getTotalVotes());
+        
+        return CharacterMapper.toStatsDTO(updatedCharacter);
+    }
+
+    /**
+     * Adds dislikes to a character by name.
+     *
+     * @param name The character name to search for (case-insensitive)
+     * @param amount The amount of dislikes to add
+     * @return CharacterStatsDTO with updated statistics
+     * @throws com.pikapikamatch.exception.ResourceNotFoundException if character not found
+     */
+    @Transactional
+    public CharacterStatsDTO addDislikesByName(String name, Integer amount) {
+        log.debug("Adding {} dislikes to character: {}", amount, name);
+        
+        // Search for character in the database (case-insensitive)
+        Optional<Character> characterOpt = characterRepository.findByNameIgnoreCase(name);
+        
+        if (characterOpt.isEmpty()) {
+            log.warn("Character not found in database: {}", name);
+            throw new ResourceNotFoundException(
+                "Character not found: " + name
+            );
+        }
+        
+        Character character = characterOpt.get();
+        
+        // Increment dislike counter by the specified amount
+        character.setTotalDislikes(character.getTotalDislikes() + amount);
+        character.setTotalVotes(character.getTotalLikes() + character.getTotalDislikes());
+        
+        Character updatedCharacter = characterRepository.save(character);
+        log.info("Added {} dislikes to '{}': {} total dislikes, {} total votes", 
+            amount,
+            updatedCharacter.getName(), 
+            updatedCharacter.getTotalDislikes(),
+            updatedCharacter.getTotalVotes());
+        
+        return CharacterMapper.toStatsDTO(updatedCharacter);
     }
 
     /**

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CharacterCard } from '../components/features/CharacterCard';
 import { Sparkles } from '../components/features/Sparkles';
@@ -19,11 +19,15 @@ export function VotingView() {
   const [animationType, setAnimationType] = useState<'like' | 'dislike' | null>(null);
   const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null);
   const [showSparkles, setShowSparkles] = useState(false);
+  
+  // Use ref to track if initial fetch has been triggered
+  const hasFetchedRef = useRef(false);
 
   // Fetch initial character on mount only if no character is loaded
   useEffect(() => {
-    if (!currentCharacter && !isLoading) {
+    if (!currentCharacter && !isLoading && !hasFetchedRef.current) {
       console.log('[VotingView] No character loaded, fetching...');
+      hasFetchedRef.current = true;
       fetchRandomCharacter();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -15,7 +15,6 @@ export const StatsCard = memo(function StatsCard({ character, stats, variant }: 
     superhero: 'bg-purple-200 text-purple-900 dark:bg-purple-900/30 dark:text-purple-300',
   };
 
-  const percentage = variant === 'favorite' ? stats.likePercentage : stats.dislikePercentage;
   const badgeLabel = variant === 'favorite' ? 'Community favorite' : 'Most controversial';
 
   return (
@@ -65,13 +64,27 @@ export const StatsCard = memo(function StatsCard({ character, stats, variant }: 
         </span>
 
         {/* Statistics */}
-        <div className="mt-2">
+        <div className="mt-2 space-y-1">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">
-              {variant === 'favorite' ? 'Likes' : 'Dislikes'}
+            <span className="text-gray-600 dark:text-gray-400 flex items-center gap-1">
+              <span className="material-symbols-outlined text-green-600 text-base" aria-hidden="true">
+                favorite
+              </span>
+              Likes
             </span>
-            <span className="font-bold text-base md:text-lg" aria-label={`${percentage.toFixed(0)} percent ${variant === 'favorite' ? 'likes' : 'dislikes'}`}>
-              {percentage.toFixed(0)}%
+            <span className="font-bold text-base md:text-lg text-green-600" aria-label={`${stats.likes} likes`}>
+              {stats.likes}
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-gray-600 dark:text-gray-400 flex items-center gap-1">
+              <span className="material-symbols-outlined text-red-600 text-base" aria-hidden="true">
+                close
+              </span>
+              Dislikes
+            </span>
+            <span className="font-bold text-base md:text-lg text-red-600" aria-label={`${stats.dislikes} dislikes`}>
+              {stats.dislikes}
             </span>
           </div>
         </div>
